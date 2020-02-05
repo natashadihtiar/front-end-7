@@ -15,7 +15,9 @@ function f (array, sayHello) {
 	}
 
 	function sayHello (names) {
-		return ' Hello ' + names;
+		var firstLetter = i === 0 ? 'Hello ' : 'hello ';
+		var space = i === 0 ? '' : ' ';
+		return space + firstLetter + names;
 	}
 	return newArray;
 }
