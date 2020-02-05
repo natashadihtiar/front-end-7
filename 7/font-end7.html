@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+      <script>
+
+var names = ["Max", "Vadim", "John"];
+
+function f (array, sayHello) {
+	var newArray = [];
+	for (var i = 0; i < names.length; i++) {
+		res = sayHello(names[i], i, names);
+		newArray.push(res);
+	}
+
+	function sayHello (names) {
+		return ' Hello ' + names;
+	}
+	return newArray;
+}
+
+console.log ("New changed array: " + f(names));
+console.log ("Initial array: " + names);
+    
+        </script>
+</body>
+</html> 
