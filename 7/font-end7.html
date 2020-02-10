@@ -5,25 +5,31 @@
 <body>
       <script>
 
-var names = ["Max", "Vadim", "John"];
+var mapArray = function (array, fn) {
+    var newArray = [];
 
-function f (array, sayHello) {
-	var newArray = [];
-	for (var i = 0; i < names.length; i++) {
-		res = sayHello(names[i], i, names);
-		newArray.push(res);
-	}
+    for (var i = 0; i < array.length; i++) {
+        var res = fn(array[i], i, array);
+        newArray.push(res);
+    }
+ return newArray;
+};
 
-	function sayHello (names) {
-		var firstLetter = i === 0 ? 'Hello ' : 'hello ';
-		var space = i === 0 ? '' : ' ';
-		return space + firstLetter + names;
-	}
-	return newArray;
+var numbers = [1, 2, 3, 4, 5];
+
+var x2 = function (number) {
+    return number ** 2;
+};
+
+var names = ['Oleg', 'Ivan', 'Anton'];
+
+var addIndex = function (name, index) {
+    return index + 1 + '. ' + name ;
 }
+   
 
-console.log ("New changed array: " + f(names));
-console.log ("Initial array: " + names);
+console.log ("Squared: " + mapArray(numbers, x2));
+console.log ("Array with indexes: " + mapArray(names, addIndex));
     
         </script>
 </body>

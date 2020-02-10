@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+</head>
+<body>
+    <div id="mocha"></div>
+    <script>
+        mocha.setup('bdd');
+        var assert = chai.assert;
+     
+
+var mapArray = function (array, fn) {
+    var newArray = [];
+
+    for (var i = 0; i < array.length; i++) {
+        var res = fn(array[i], i, array);
+        newArray.push(res);
+    }
+ return newArray;
+};
+
+var numbers = [1, 2, 3, 4, 5];
+
+var x2 = function (number) {
+    return number ** 2;
+};
+
+var names = ['Oleg', 'Ivan', 'Anton'];
+
+var addIndex = function (name, index) {
+    return index + 1 + '. ' + name ;
+}
+   
+
+console.log ("Squared: " + mapArray(numbers, x2));
+console.log ("Array with indexes: " + mapArray(names, addIndex));
+        
+        describe("mapArray", function() {
+            it("Возводит в квадрат каждое значение в массиве", function() {
+                const testRes = mapArray([1,2,3,4,5], number => number ** 2);
+                assert.equal(testRes[4], 25);
+            });
+
+            it("Добавляем индекс к имени", function() {
+                const testRes = mapArray(['Oleg', 'Ivan', 'Anton'], (name, index) => index + 1 + '. ' + name);
+                assert.equal(testRes[1], '2. Ivan');
+            });
+        });
+
+        mocha.run();
+    </script>
+</body>
+</html>
